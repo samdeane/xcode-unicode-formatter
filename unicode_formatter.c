@@ -89,35 +89,65 @@ static char *nullPluginFunctions = "CFDataFormatter plugin error: _pbxgdb_plugin
 // in the Summary column, so this can be a lossy conversion.
 
 // Read the DataFormatterPlugin.h header for more information on custom data formatters and allocators requirements
-char * dataformatter_char_for_wchar(wchar_t *wcharData, int identifier, int bufLen)
+char * dataformatter_char_for_wchar(wchar_t *wcharData, int identifier, int bufLen, int convertFromUTF16)
 {
     size_t maxChars = bufLen - 1;
-    char * formatterBuf;
-    if (_pbxgdb_plugin_functions) {
+	
+	wchar_t* inputBuffer = wcharData;
+    char* outputBuffer;
+
+    if (_pbxgdb_plugin_functions)
+	{
+		if (convertFromUTF16)
+		{
+			// copy from UTF16 buffer into UTF32 buffer
+			inputBuffer = (wchar_t *) malloc(bufLen * sizeof(wchar_t));
+			unsigned short* copyFrom = (unsigned short*) wcharData;
+			unsigned long* copyTo = (unsigned long*) inputBuffer;
+			size_t copyCount = maxChars;
+			while (copyCount-- && (*(copyTo++) = (unsigned long) (*(copyFrom++))))/* do nothing */;
+			*copyTo = 0;
+		}
 		
-        formatterBuf = (char *)(_pbxgdb_plugin_functions->allocate(identifier, bufLen));
-        formatterBuf[0] = 0;
-        wcstombs( formatterBuf, wcharData, maxChars);
+        outputBuffer = (char *)(_pbxgdb_plugin_functions->allocate(identifier, bufLen));
+        outputBuffer[0] = 0;
+		outputBuffer[maxChars] = 0;
+        wcstombs( outputBuffer, inputBuffer, maxChars);
 
         // Uncomment if you want this printed in the console every time the formatter is evaluated. This is good for Debugging.
-        // printf("wchar: %s\n",formatterBuf);
+		/*int n;
+		printf("original:");
+		for (n = 0; n < bufLen; ++n) { printf("%08x", wcharData[n]); }
+		printf("\ninput:");
+		for (n = 0; n < bufLen; ++n) { printf("%08x", inputBuffer[n]); }
+        printf("\nwchar: %s, convert:%d, bufLen:%d, wchar size:%d\n", outputBuffer, convertFromUTF16, (int) bufLen, (int) sizeof(wchar_t));
+		*/
 		
-		//formatterBuf = (char *)(_pbxgdb_plugin_functions->message(identifier, "%ls", wcharData));
+		if (convertFromUTF16)
+			free(inputBuffer);
     }
-    else {
-        formatterBuf = nullPluginFunctions;
+    else
+	{
+        outputBuffer = nullPluginFunctions;
     }
-    return formatterBuf;    
+    
+	return outputBuffer;    
 }
 
-char * myWCharDataFormatter(wchar_t wcharData, int identifier)
+char * formatUTF32(wchar_t wcharData, int identifier)
 {
-    size_t bufLen = 2; 
-    return dataformatter_char_for_wchar(&wcharData, identifier, bufLen);
+    size_t bufLen = 2;
+    return dataformatter_char_for_wchar(&wcharData, identifier, bufLen, 0);
 }
 
-char * myWCharPointerDataFormatter(wchar_t *wcharData, int identifier)
+char * formatUTF32Pointer(wchar_t *wcharData, int identifier)
 {
     size_t bufLen = 255; 
-    return dataformatter_char_for_wchar(wcharData, identifier, bufLen);
+    return dataformatter_char_for_wchar(wcharData, identifier, bufLen, 0);
+}
+
+char * formatUTF16Pointer(unsigned short *wcharData, int identifier)
+{
+    size_t bufLen = 255; 
+    return dataformatter_char_for_wchar((wchar_t*) wcharData, identifier, bufLen, 1);
 }

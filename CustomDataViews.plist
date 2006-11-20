@@ -7,17 +7,17 @@
 	<key>wchar_t *</key>
 	<dict>
 		<key>SummaryString</key>
-		<string>{(char *)myWCharPointerDataFormatter((wchar_t *) $VAR, (int) $ID)}:s</string>
+		<string>{(char *)formatUTF32Pointer((wchar_t *) $VAR, (int) $ID)}:s</string>
 	</dict>
 	<key>wchar_t</key>
 	<dict>
 		<key>SummaryString</key>
-		<string>{(char *)myWCharDataFormatter((wchar_t) $VAR, (int) $ID)}:s</string>
+		<string>{(char *)formatUTF32((wchar_t) $VAR, (int) $ID)}:s</string>
 	</dict>
     	<key>wchar_t [255]</key>
 	<dict>
 		<key>SummaryString</key>
-		<string>{(char *)myWCharPointerDataFormatter((wchar_t *) $VAR, (int) $ID)}:s</string>
+		<string>{(char *)formatUTF32Pointer((wchar_t *) $VAR, (int) $ID)}:s</string>
 	</dict>
 
 </dict>
