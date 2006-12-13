@@ -115,13 +115,12 @@ char * dataformatter_char_for_wchar(wchar_t *wcharData, int identifier, int bufL
         wcstombs( outputBuffer, inputBuffer, maxChars);
 
         // Uncomment if you want this printed in the console every time the formatter is evaluated. This is good for Debugging.
-		/*int n;
+		int n;
 		printf("original:");
 		for (n = 0; n < bufLen; ++n) { printf("%08x", wcharData[n]); }
 		printf("\ninput:");
 		for (n = 0; n < bufLen; ++n) { printf("%08x", inputBuffer[n]); }
-        printf("\nwchar: %s, convert:%d, bufLen:%d, wchar size:%d\n", outputBuffer, convertFromUTF16, (int) bufLen, (int) sizeof(wchar_t));
-		*/
+        printf("\nwchar: %s, convert:%d, bufLen:%d, wchar size:%d\n", outputBuffer, convertFromUTF16, (int) bufLen, (int) sizeof(wchar_t));		
 		
 		if (convertFromUTF16)
 			free(inputBuffer);
@@ -132,6 +131,11 @@ char * dataformatter_char_for_wchar(wchar_t *wcharData, int identifier, int bufL
     }
     
 	return outputBuffer;    
+}
+
+char * formatUTFTest(void)
+{
+	return "this is a test";
 }
 
 char * formatUTF32(wchar_t wcharData, int identifier)

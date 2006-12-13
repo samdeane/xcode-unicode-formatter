@@ -71,8 +71,8 @@
 					PBXFileDataSource_Warnings_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 185728959;
-			PBXWorkspaceStateSaveDate = 185728959;
+			PBXPerProjectTemplateStateSaveDate = 186936580;
+			PBXWorkspaceStateSaveDate = 186936580;
 		};
 		sourceControlManager = 22A6BDC70B0E299900F6527C /* Source Control */;
 		userBuildSettings = {
@@ -137,12 +137,13 @@
 		functionName = "main()";
 		hitCount = 1;
 		lineNumber = 80;
-		modificationTime = 185728563.610342;
+		location = unicode_formatter_test;
+		modificationTime = 186935926.144589;
 		state = 1;
 	};
 	22CDB9850B0E2E9700FBDCB9 /* XCBreakpointsBucket */ = {
 		isa = XCBreakpointsBucket;
-		name = "Project Breakpoints";
+		name = unicode_formatter;
 		objects = (
 			22CDB9840B0E2E6F00FBDCB9 /* unicode_formatter_test.c:80 */,
 		);
@@ -160,9 +161,9 @@
 	};
 	EF02A232094A40A2002B0BF1 /* unicode_formatter.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1373, 2156}}";
-			sepNavSelRange = "{5274, 0}";
-			sepNavVisRect = "{{0, 1288}, {1373, 868}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1373, 2212}}";
+			sepNavSelRange = "{3138, 19}";
+			sepNavVisRect = "{{0, 0}, {1373, 844}}";
 			sepNavWindowFrame = "{{81, 25}, {1412, 973}}";
 		};
 	};
@@ -182,9 +183,9 @@
 	};
 	EF02A4A4094A563E002B0BF1 /* unicode_formatter_test.c */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1373, 1218}}";
-			sepNavSelRange = "{2948, 0}";
-			sepNavVisRect = "{{0, 350}, {1373, 868}}";
+			sepNavIntBoundsRect = "{{0, 0}, {918, 1218}}";
+			sepNavSelRange = "{10, 14}";
+			sepNavVisRect = "{{0, 0}, {918, 203}}";
 			sepNavWindowFrame = "{{215, 4}, {1412, 973}}";
 		};
 	};
