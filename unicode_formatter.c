@@ -76,9 +76,12 @@ SUCH DAMAGE.
 
 /* Custom data formatters should be installed in:
 
+
 /Library/Application Support/Apple/Developer\ Tools/CustomDataViews
 
 */
+
+#define DEBUG_PRINT(...)
 
 //  A bundle to support custom data formatting must define the following symbol:
 _pbxgdb_plugin_function_list *_pbxgdb_plugin_functions;
@@ -116,11 +119,11 @@ char * dataformatter_char_for_wchar(wchar_t *wcharData, int identifier, int bufL
 
         // Uncomment if you want this printed in the console every time the formatter is evaluated. This is good for Debugging.
 		int n;
-		printf("original:");
+		DEBUG_PRINT("original:");
 		for (n = 0; n < bufLen; ++n) { printf("%08x", wcharData[n]); }
-		printf("\ninput:");
+		DEBUG_PRINT("\ninput:");
 		for (n = 0; n < bufLen; ++n) { printf("%08x", inputBuffer[n]); }
-        printf("\nwchar: %s, convert:%d, bufLen:%d, wchar size:%d\n", outputBuffer, convertFromUTF16, (int) bufLen, (int) sizeof(wchar_t));		
+        DEBUG_PRINT("\nwchar: %s, convert:%d, bufLen:%d, wchar size:%d\n", outputBuffer, convertFromUTF16, (int) bufLen, (int) sizeof(wchar_t));		
 		
 		if (convertFromUTF16)
 			free(inputBuffer);
