@@ -1,5 +1,5 @@
 // ================================================================================
-// $Id: $
+// $Id$
 //
 //! XCode variable formatter for Unicode character data.
 //
