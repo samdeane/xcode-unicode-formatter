@@ -1,7 +1,5 @@
 // ================================================================================
 // $Id$
-// $DateTime: $
-// $Date$
 //
 //! XCode variable formatter for Unicode character data.
 //
