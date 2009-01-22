@@ -132,9 +132,11 @@
 		089C1669FE841209C02AAC07 /* Project object */ = {
 			isa = PBXProject;
 			buildConfigurationList = 4FADC23708B4156C00ABE55E /* Build configuration list for PBXProject "unicode_formatter" */;
+			compatibilityVersion = "Xcode 2.4";
 			hasScannedForEncodings = 1;
 			mainGroup = 089C166AFE841209C02AAC07 /* wchardataformatter */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8D01CCC60486CAD60068D4B7 /* unicode formatter */,
 				EF02A49C094A5623002B0BF1 /* test */,
