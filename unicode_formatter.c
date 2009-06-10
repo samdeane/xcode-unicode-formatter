@@ -18,8 +18,6 @@
 
 #import "/Developer/Applications/Xcode.app/Contents/PlugIns/GDBMIDebugging.xcplugin/Contents/Headers/DataFormatterPlugin.h"
 
-#include <wchar.h>
-
 #include <CoreFoundation/CoreFoundation.h>
 
 // --------------------------------------------------------------------------------
@@ -40,6 +38,8 @@ _pbxgdb_plugin_function_list *_pbxgdb_plugin_functions;
 // --------------------------------------------------------------------------------
 
 static char* kNullPluginError = "CFDataFormatter plugin error: _pbxgdb_plugin_functions not set!";
+static char* kNullInputError = "<null string>";
+static const size_t max_length = 1024;
 
 // --------------------------------------------------------------------------------
 //! Convert a CFString into a char* buffer that we can return.
@@ -100,42 +100,48 @@ char* formatUnicodeCharacter(long character, int identifier)
 
 char* formatUnicodeString(long* input, size_t size_of_one_char, int identifier)
 {
-	size_t length;
+	if (!input)
+		return kNullInputError;
+	
+	size_t length = 0;
 	CFStringEncoding encoding;
 	
 	if (size_of_one_char == 2)
 	{
-		length = 0;
 		short* temp = (short*) input;
-		while (*temp++) length++;
+		while (*temp++ && (length < max_length)) length++;
 		encoding = kCFStringEncodingUTF16LE;
 	}
 	else
 	{
-		length = wcslen((wchar_t*) input);
+		long* temp = (long*) input;
+		while (*temp++ && (length < max_length)) length++;
 		encoding = kCFStringEncodingUTF32LE;
 	}
-
+	
 	CFStringRef string = CFStringCreateWithBytes(NULL, (UInt8*) input, length * size_of_one_char, encoding, false);
 	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
 	CFRelease(string);
-	
+
 	return result;
 }
 
 // --------------------------------------------------------------------------------
-//! Takes a pointer to a SICORE string buffer
+//! Takes a pointer to a SICORE string
 // --------------------------------------------------------------------------------
 
-char* formatStringBuffer(long* input, int identifier)
+char* formatCoreString(long* input, int identifier)
 {
+	if (!input)
+		return kNullInputError;
+	
 	if (((char*) input)[0] != '\1')
 		return (char*) input;
-	
+
 	size_t length = 0;
 	short* actual_buffer = (short*) (input + 1);
 	short* temp = actual_buffer;
-	while (*temp++) length++;
+	while (*temp++ && (length < max_length)) length++;
 	
 	CFStringRef string = CFStringCreateWithBytes(NULL, (UInt8*) actual_buffer, length * 2, kCFStringEncodingUTF16LE, false);
 	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
