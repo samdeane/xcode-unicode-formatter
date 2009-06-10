@@ -26,7 +26,7 @@
 // Macros
 // --------------------------------------------------------------------------------
 
-#define DEBUG_PRINT(...)
+#define DEBUG_PRINT(...) fprintf(stderr, __VA_ARGS__);
 
 // --------------------------------------------------------------------------------
 // Globals
@@ -72,6 +72,9 @@ char* ConvertStringToEncoding(CFStringRef string, CFStringEncoding encoding, int
 		}
     }
     
+	if (output) DEBUG_PRINT("converted: %s\n", output);
+		
+	
 	return output ? output : kNullPluginError;    
 }
 
@@ -114,6 +117,27 @@ char* formatUnicodeString(long* input, size_t size_of_one_char, int identifier)
 	}
 
 	CFStringRef string = CFStringCreateWithBytes(NULL, (UInt8*) input, length * size_of_one_char, encoding, false);
+	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
+	CFRelease(string);
+	
+	return result;
+}
+
+// --------------------------------------------------------------------------------
+//! Takes a pointer to a SICORE string buffer
+// --------------------------------------------------------------------------------
+
+char* formatStringBuffer(long* input, int identifier)
+{
+	if (((char*) input)[0] != '\1')
+		return (char*) input;
+	
+	size_t length = 0;
+	short* actual_buffer = (short*) (input + 1);
+	short* temp = actual_buffer;
+	while (*temp++) length++;
+	
+	CFStringRef string = CFStringCreateWithBytes(NULL, (UInt8*) actual_buffer, length * 2, kCFStringEncodingUTF16LE, false);
 	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
 	CFRelease(string);
 	
