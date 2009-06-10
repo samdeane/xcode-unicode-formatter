@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
 	<key>File Version</key>
@@ -7,18 +7,17 @@
 	<key>wchar_t *</key>
 	<dict>
 		<key>SummaryString</key>
-		<string>{(char *)formatUTF32Pointer((wchar_t *) $VAR, (int) $ID)}:s</string>
+		<string>{(char *) formatUnicodeString((long *) $VAR, sizeof($VAR[0]), (int) $ID)}:s</string>
 	</dict>
 	<key>wchar_t</key>
 	<dict>
 		<key>SummaryString</key>
-		<string>{(char *)formatUTF32((wchar_t) $VAR, (int) $ID)}:s</string>
+		<string>{(char *) formatUnicodeCharacter((long)$VAR, (int) $ID)}:s</string>
 	</dict>
-    	<key>wchar_t [255]</key>
+	<key>wchar_t [255]</key>
 	<dict>
 		<key>SummaryString</key>
-		<string>{(char *)formatUTF32Pointer((wchar_t *) $VAR, (int) $ID)}:s</string>
+		<string>{(char *) formatUnicodeString((long *) $VAR, sizeof($VAR[0]), (int) $ID)}:s</string>
 	</dict>
-
 </dict>
 </plist>

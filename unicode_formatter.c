@@ -4,12 +4,12 @@
 //! XCode variable formatter for Unicode character data.
 //
 //! Custom data formatters should be installed in:
-//!    /Library/Application Support/Apple/Developer\ Tools/CustomDataViews
+//!   ~/Library/Library/Application Support/Developer/3.1/XCode/CustomDataViews/
 //
 //! Read DataFormatterPlugin.h for more information on custom data formatters 
 //! and allocators.
 //
-// Copyright (c) 2007 Elegant Chaos. All Rights Reserved.
+// Copyright (c) 2009 Elegant Chaos. All Rights Reserved.
 // ================================================================================
 
 // --------------------------------------------------------------------------------
@@ -18,9 +18,9 @@
 
 #import "/Developer/Applications/Xcode.app/Contents/PlugIns/GDBMIDebugging.xcplugin/Contents/Headers/DataFormatterPlugin.h"
 
-#include <stdlib.h>
 #include <wchar.h>
-#include <string.h>
+
+#include <CoreFoundation/CoreFoundation.h>
 
 // --------------------------------------------------------------------------------
 // Macros
@@ -42,93 +42,80 @@ _pbxgdb_plugin_function_list *_pbxgdb_plugin_functions;
 static char* kNullPluginError = "CFDataFormatter plugin error: _pbxgdb_plugin_functions not set!";
 
 // --------------------------------------------------------------------------------
-//! Convert wchar_t or UTF16 string data into UTF8 / ASCII.
-//! All data formatters plugins can currently only return a 'char *' to be displayed
-//! in the Summary column, so this can be a lossy conversion.
+//! Convert a CFString into a char* buffer that we can return.
 // --------------------------------------------------------------------------------
 
-char * dataformatter_char_for_wchar(wchar_t *wcharData, int identifier, int bufLen, int convertFromUTF16)
+char* ConvertStringToEncoding(CFStringRef string, CFStringEncoding encoding, int identifier)
 {
-    size_t maxChars = bufLen - 1;
-	
-	wchar_t* inputBuffer = wcharData;
-    char* outputBuffer;
-
+	char* output = NULL;
     if (_pbxgdb_plugin_functions)
 	{
-		if (convertFromUTF16)
+		// we want to convert the whole string
+		CFRange range;
+		range.location = 0;
+		range.length = CFStringGetLength(string);
+		
+		// find out how big our utf-8 buffer needs to be
+		CFIndex length_needed;
+		CFStringGetBytes(string, range, encoding, '?', false, NULL, 0, &length_needed);
+		
+		// make the output buffer
+		// just in case the convert call fails completely, we zero terminate it
+        output = (char*)(_pbxgdb_plugin_functions->allocate(identifier, length_needed + 1));
+		if (output)
 		{
-			// copy from UTF16 buffer into UTF32 buffer
-			inputBuffer = (wchar_t *) malloc(bufLen * sizeof(wchar_t));
-			unsigned short* copyFrom = (unsigned short*) wcharData;
-			unsigned long* copyTo = (unsigned long*) inputBuffer;
-			size_t copyCount = maxChars;
-			while (copyCount-- && (*(copyTo++) = (unsigned long) (*(copyFrom++))))/* do nothing */;
-			*copyTo = 0;
+			output[0] = 0; 
+			
+			// try to get the actual string - we terminate it for safety
+			CFStringGetBytes(string, range, encoding, '?', false, (UInt8*) output, length_needed, &length_needed);
+			output[length_needed] = 0;
 		}
-		
-        outputBuffer = (char *)(_pbxgdb_plugin_functions->allocate(identifier, bufLen));
-        outputBuffer[0] = 0;
-		outputBuffer[maxChars] = 0;
-        wcstombs( outputBuffer, inputBuffer, maxChars);
-
-        // Uncomment if you want this printed in the console every time the formatter is evaluated. This is good for Debugging.
-		int n;
-		DEBUG_PRINT("original:");
-		for (n = 0; n < bufLen; ++n) { DEBUG_PRINT("%08x", wcharData[n]); }
-		DEBUG_PRINT("\ninput:");
-		for (n = 0; n < bufLen; ++n) { DEBUG_PRINT("%08x", inputBuffer[n]); }
-        DEBUG_PRINT("\nwchar: %s, convert:%d, bufLen:%d, wchar size:%d\n", outputBuffer, convertFromUTF16, (int) bufLen, (int) sizeof(wchar_t));		
-		
-		if (convertFromUTF16)
-			free(inputBuffer);
-    }
-    else
-	{
-        outputBuffer = kNullPluginError;
     }
     
-	return outputBuffer;    
+	return output ? output : kNullPluginError;    
 }
 
 // --------------------------------------------------------------------------------
-//! Test Entrypoint.
+//! Takes a unicode character and returns it as a C string.
 // --------------------------------------------------------------------------------
 
-char * formatUTFTest(void)
+char* formatUnicodeCharacter(long character, int identifier)
 {
-	return "this is a test";
+	CFStringRef string = CFStringCreateWithBytes(NULL, (UInt8*) &character, sizeof(character), kCFStringEncodingUTF32LE, false);
+//	CFStringRef string = CFStringCreateWithCString(NULL, "character test", kCFStringEncodingUTF8);												   ;
+	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
+	CFRelease(string);
+	
+	return result;
 }
 
 // --------------------------------------------------------------------------------
-//! Entrypoint for a UTF32 character.
-//!
-//! Will also do 16-bit characters since it's easy enough to convert it up to a
-//! wchar_t.
+//! Takes a pointer to a unicode string, and returns it as a C string.
+//! The size of one character is passed in, so that we can tell if we're dealing
+//! with 16 or 32 bit characters.
 // --------------------------------------------------------------------------------
 
-char * formatUTF32(wchar_t wcharData, int identifier)
+char* formatUnicodeString(long* input, size_t size_of_one_char, int identifier)
 {
-    size_t bufLen = 2;
-    return dataformatter_char_for_wchar(&wcharData, identifier, bufLen, 0);
-}
+	size_t length;
+	CFStringEncoding encoding;
+	
+	if (size_of_one_char == 2)
+	{
+		length = 0;
+		short* temp = (short*) input;
+		while (*temp++) length++;
+		encoding = kCFStringEncodingUTF16LE;
+	}
+	else
+	{
+		length = wcslen((wchar_t*) input);
+		encoding = kCFStringEncodingUTF32LE;
+	}
 
-// --------------------------------------------------------------------------------
-// Entrypoint for a wchar_t/UTF32 string
-// --------------------------------------------------------------------------------
-
-char * formatUTF32Pointer(wchar_t *wcharData, int identifier)
-{
-    size_t bufLen = 255; 
-    return dataformatter_char_for_wchar(wcharData, identifier, bufLen, 0);
-}
-
-// --------------------------------------------------------------------------------
-// Entrypoint for a UTF16 string
-// --------------------------------------------------------------------------------
-
-char * formatUTF16Pointer(unsigned short *wcharData, int identifier)
-{
-    size_t bufLen = 255; 
-    return dataformatter_char_for_wchar((wchar_t*) wcharData, identifier, bufLen, 1);
+	CFStringRef string = CFStringCreateWithBytes(NULL, (UInt8*) input, length * size_of_one_char, encoding, false);
+	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
+	CFRelease(string);
+	
+	return result;
 }
