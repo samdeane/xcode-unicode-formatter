@@ -30,7 +30,7 @@
 
 extern char* kNullPluginError;
 extern char* kNullInputError;
-const size_t max_length = 1024;
+extern const size_t max_length;
 
 // --------------------------------------------------------------------------------
 //! Convert a CFString into a char* buffer that we can return.

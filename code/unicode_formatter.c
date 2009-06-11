@@ -33,6 +33,7 @@ _pbxgdb_plugin_function_list *_pbxgdb_plugin_functions;
 
 char* kNullPluginError = "CFDataFormatter plugin error: _pbxgdb_plugin_functions not set!";
 char* kNullInputError = "<null string>";
+const size_t max_length = 1024;
 
 // --------------------------------------------------------------------------------
 //! Convert a CFString into a char* buffer that we can return.
