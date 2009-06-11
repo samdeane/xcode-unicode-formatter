@@ -12,16 +12,15 @@
 #include <stdlib.h>
 #include <wchar.h>
 
-	typedef wchar_t C16;
 
 int main(int argc, char *argv[])
 {
 	const wchar_t* null_string = NULL;
-    C16 c = 'A';
-    C16 b[255];
-    C16 *d = &b[0];
+    wchar_t c = 'A';
+    wchar_t b[255];
+    wchar_t *d = &b[0];
     char *a = "a b c d e f g";
-	C16* test = L"this is a test";
+	wchar_t* test = L"this is a test";
     mbstowcs(d, a , strlen(a));
 	return 0;
 
