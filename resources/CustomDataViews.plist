@@ -14,30 +14,5 @@
 		<key>SummaryString</key>
 		<string>{(char *) formatUnicodeCharacter((long)$VAR, (int) $ID)}:s</string>
 	</dict>
-	<key>C16 *</key>
-	<dict>
-		<key>SummaryString</key>
-		<string>{(char *) formatUnicodeString((long *) $VAR, 2, (int) $ID)}:s</string>
-	</dict>
-	<key>SICORE::C16 *</key>
-	<dict>
-		<key>SummaryString</key>
-		<string>{(char *) formatUnicodeString((long *) $VAR, 2, (int) $ID)}:s</string>
-	</dict>
-	<key>SICORE::STRING_BUFFER *</key>
-	<dict>
-		<key>SummaryString</key>
-		<string>{(char *) formatUnicodeString(((long*)&amp;$VAR.length + 1), 2, (int) $ID)}:s</string>
-	</dict>
-	<key>SICORE::STRING *</key>
-	<dict>
-		<key>SummaryString</key>
-		<string>{(char *) formatCoreString((long*) $VAR.string_pointer, 2, (int) $ID)}:s</string>
-	</dict>
-	<key>SIOS::SAFE_STRING *</key>
-	<dict>
-		<key>SummaryString</key>
-		<string>{(char *) formatCoreString((long*) $VAR.string_pointer, 2, (int) $ID)}:s</string>
-	</dict>
 </dict>
 </plist>
