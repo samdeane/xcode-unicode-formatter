@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		226188250FE0F0E000FE8DC1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
-		226188260FE0F0E000FE8DC1 /* CustomDataViews.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF02A495094A5549002B0BF1 /* CustomDataViews.plist */; };
 		2261882A0FE0F0E000FE8DC1 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2263D8780FE01D3B00F410A4 /* CoreFoundation.framework */; };
 		2261882C0FE0F0E000FE8DC1 /* unicode formatter.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D01CCD20486CAD60068D4B7 /* unicode formatter.bundle */; };
 		226188680FE0F3D100FE8DC1 /* unicode_formatter.c in Sources */ = {isa = PBXBuildFile; fileRef = 226188660FE0F3D100FE8DC1 /* unicode_formatter.c */; };
@@ -16,10 +15,10 @@
 		2261886C0FE0F3F300FE8DC1 /* unicode_formatter_test.c in Sources */ = {isa = PBXBuildFile; fileRef = 2261886B0FE0F3F300FE8DC1 /* unicode_formatter_test.c */; };
 		226188900FE0F4FD00FE8DC1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2261888F0FE0F4FD00FE8DC1 /* Info.plist */; };
 		226188940FE0F55B00FE8DC1 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 226188930FE0F55B00FE8DC1 /* Info.plist */; };
+		226188A10FE0F5F000FE8DC1 /* CustomDataViews.plist in Resources */ = {isa = PBXBuildFile; fileRef = 226188A00FE0F5F000FE8DC1 /* CustomDataViews.plist */; };
 		2263D8790FE01D3B00F410A4 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2263D8780FE01D3B00F410A4 /* CoreFoundation.framework */; };
 		22D28B740FE012D3000E073E /* unicode formatter.bundle in CopyFiles */ = {isa = PBXBuildFile; fileRef = 8D01CCD20486CAD60068D4B7 /* unicode formatter.bundle */; };
 		8D01CCCA0486CAD60068D4B7 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C167DFE841241C02AAC07 /* InfoPlist.strings */; };
-		EF02A496094A5549002B0BF1 /* CustomDataViews.plist in Resources */ = {isa = PBXBuildFile; fileRef = EF02A495094A5549002B0BF1 /* CustomDataViews.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,9 +64,9 @@
 		2261886B0FE0F3F300FE8DC1 /* unicode_formatter_test.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = unicode_formatter_test.c; path = code/unicode_formatter_test.c; sourceTree = "<group>"; };
 		2261888F0FE0F4FD00FE8DC1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = resources/Info.plist; sourceTree = "<group>"; };
 		226188930FE0F55B00FE8DC1 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		226188A00FE0F5F000FE8DC1 /* CustomDataViews.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = CustomDataViews.plist; path = resources/CustomDataViews.plist; sourceTree = "<group>"; };
 		2263D8780FE01D3B00F410A4 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = /System/Library/Frameworks/CoreFoundation.framework; sourceTree = "<absolute>"; };
 		8D01CCD20486CAD60068D4B7 /* unicode formatter.bundle */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "unicode formatter.bundle"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EF02A495094A5549002B0BF1 /* CustomDataViews.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist; path = CustomDataViews.plist; sourceTree = "<group>"; };
 		EF02A49D094A5623002B0BF1 /* unicode_formatter_test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = unicode_formatter_test; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -101,7 +100,6 @@
 		089C166AFE841209C02AAC07 /* wchardataformatter */ = {
 			isa = PBXGroup;
 			children = (
-				EF02A495094A5549002B0BF1 /* CustomDataViews.plist */,
 				08FB77ADFE841716C02AAC07 /* Source */,
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
@@ -121,6 +119,7 @@
 		089C167CFE841241C02AAC07 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				226188A00FE0F5F000FE8DC1 /* CustomDataViews.plist */,
 				226188920FE0F55B00FE8DC1 /* si */,
 				2261888F0FE0F4FD00FE8DC1 /* Info.plist */,
 				089C167DFE841241C02AAC07 /* InfoPlist.strings */,
@@ -242,7 +241,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				226188250FE0F0E000FE8DC1 /* InfoPlist.strings in Resources */,
-				226188260FE0F0E000FE8DC1 /* CustomDataViews.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -251,9 +249,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D01CCCA0486CAD60068D4B7 /* InfoPlist.strings in Resources */,
-				EF02A496094A5549002B0BF1 /* CustomDataViews.plist in Resources */,
 				226188900FE0F4FD00FE8DC1 /* Info.plist in Resources */,
 				226188940FE0F55B00FE8DC1 /* Info.plist in Resources */,
+				226188A10FE0F5F000FE8DC1 /* CustomDataViews.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -322,7 +320,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
-				INFOPLIST_FILE = "/Work/projects/com/elegantchaos/unicode formatter/Info copy.plist";
+				INFOPLIST_FILE = resources/si/Info.plist;
 				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = "";
@@ -347,7 +345,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
-				INFOPLIST_FILE = "/Work/projects/com/elegantchaos/unicode formatter/Info copy.plist";
+				INFOPLIST_FILE = resources/si/Info.plist;
 				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = "";
@@ -373,7 +371,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = resources/Info.plist;
 				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = "";
@@ -398,7 +396,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = NO;
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
-				INFOPLIST_FILE = Info.plist;
+				INFOPLIST_FILE = resources/Info.plist;
 				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = "";
