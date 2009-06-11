@@ -16,15 +16,9 @@
 // Includes
 // --------------------------------------------------------------------------------
 
+#include "unicode_formatter.h"
+
 #import "/Developer/Applications/Xcode.app/Contents/PlugIns/GDBMIDebugging.xcplugin/Contents/Headers/DataFormatterPlugin.h"
-
-#include <CoreFoundation/CoreFoundation.h>
-
-// --------------------------------------------------------------------------------
-// Macros
-// --------------------------------------------------------------------------------
-
-#define DEBUG_PRINT(...) fprintf(stderr, __VA_ARGS__);
 
 // --------------------------------------------------------------------------------
 // Globals
@@ -37,9 +31,8 @@ _pbxgdb_plugin_function_list *_pbxgdb_plugin_functions;
 // Constants
 // --------------------------------------------------------------------------------
 
-static char* kNullPluginError = "CFDataFormatter plugin error: _pbxgdb_plugin_functions not set!";
-static char* kNullInputError = "<null string>";
-static const size_t max_length = 1024;
+char* kNullPluginError = "CFDataFormatter plugin error: _pbxgdb_plugin_functions not set!";
+char* kNullInputError = "<null string>";
 
 // --------------------------------------------------------------------------------
 //! Convert a CFString into a char* buffer that we can return.
@@ -123,29 +116,5 @@ char* formatUnicodeString(long* input, size_t size_of_one_char, int identifier)
 	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
 	CFRelease(string);
 
-	return result;
-}
-
-// --------------------------------------------------------------------------------
-//! Takes a pointer to a SICORE string
-// --------------------------------------------------------------------------------
-
-char* formatCoreString(long* input, int identifier)
-{
-	if (!input)
-		return kNullInputError;
-	
-	if (((char*) input)[0] != '\1')
-		return (char*) input;
-
-	size_t length = 0;
-	short* actual_buffer = (short*) (input + 1);
-	short* temp = actual_buffer;
-	while (*temp++ && (length < max_length)) length++;
-	
-	CFStringRef string = CFStringCreateWithBytes(NULL, (UInt8*) actual_buffer, length * 2, kCFStringEncodingUTF16LE, false);
-	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
-	CFRelease(string);
-	
 	return result;
 }
