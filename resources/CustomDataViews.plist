@@ -7,12 +7,12 @@
 	<key>wchar_t *</key>
 	<dict>
 		<key>SummaryString</key>
-		<string>{(char *) formatUnicodeString((long *) $VAR, sizeof($VAR[0]), (int) $ID)}:s</string>
+		<string>&quot;{(char *) formatUnicodeString((long *) $VAR, sizeof($VAR[0]), (int) $ID)}:s&quot;</string>
 	</dict>
 	<key>wchar_t</key>
 	<dict>
 		<key>SummaryString</key>
-		<string>{(char *) formatUnicodeCharacter((long)$VAR, (int) $ID)}:s</string>
+		<string>&apos;{(char *) formatUnicodeCharacter((long)$VAR, (int) $ID)}:s&apos;</string>
 	</dict>
 </dict>
 </plist>
