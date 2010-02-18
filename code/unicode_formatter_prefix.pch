@@ -1,7 +1,10 @@
 // ================================================================================
-// $Id$
+// $Id: $
 //
-// Copyright (c) 2007 Elegant Chaos. All Rights Reserved.
+//! XCode variable formatter for Unicode character data.
+//! See http://www.elegantchaos.com/projects/unicode-formatter for more info.
+//
+// Copyright (c) 2009 Elegant Chaos. Based on Apple sample code.
 // ================================================================================
 
 #include <Carbon/Carbon.h>

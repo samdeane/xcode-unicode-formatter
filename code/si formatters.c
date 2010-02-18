@@ -1,7 +1,8 @@
 // ================================================================================
 // $Id: unicode_formatter.c 846 2009-06-10 23:41:47Z sam $
 //
-//! Specific formatters for Sports Interactive library types.
+//! Specific formatters for some custom library types. Not a great deal of
+//! use for anyone in the outside world.
 // ================================================================================
 
 // --------------------------------------------------------------------------------
@@ -11,7 +12,7 @@
 #include "unicode_formatter.h"
 
 // --------------------------------------------------------------------------------
-//! Takes a pointer to a SICORE string
+//! Takes a pointer to a si core string
 // --------------------------------------------------------------------------------
 
 char* formatCoreString(long* input, int identifier)

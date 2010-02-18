@@ -2,14 +2,9 @@
 // $Id: unicode_formatter.c 846 2009-06-10 23:41:47Z sam $
 //
 //! XCode variable formatter for Unicode character data.
+//! See http://www.elegantchaos.com/projects/unicode-formatter for more info.
 //
-//! Custom data formatters should be installed in:
-//!   ~/Library/Library/Application Support/Developer/3.1/XCode/CustomDataViews/
-//
-//! Read DataFormatterPlugin.h for more information on custom data formatters 
-//! and allocators.
-//
-// Copyright (c) 2009 Elegant Chaos. All Rights Reserved.
+// Copyright (c) 2009 Elegant Chaos. Based on Apple sample code.
 // ================================================================================
 
 // --------------------------------------------------------------------------------
