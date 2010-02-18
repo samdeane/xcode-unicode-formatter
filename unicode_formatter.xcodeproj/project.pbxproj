@@ -36,7 +36,7 @@
 		2261882B0FE0F0E000FE8DC1 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews/";
+			dstPath = "/Users/sam/Library/Application Support/Developer/Shared/XCode/CustomDataViews/";
 			dstSubfolderSpec = 0;
 			files = (
 				224350D40FE0FE9C006E14FC /* si formatter.bundle in CopyFiles */,
@@ -46,7 +46,7 @@
 		22D28B850FE012D8000E073E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews/";
+			dstPath = "/Users/sam/Library/Application Support/Developer/Shared/XCode/CustomDataViews/";
 			dstSubfolderSpec = 0;
 			files = (
 				22D28B740FE012D3000E073E /* unicode formatter.bundle in CopyFiles */,
@@ -107,7 +107,6 @@
 				089C167CFE841241C02AAC07 /* Resources */,
 				089C1671FE841209C02AAC07 /* External Frameworks and Libraries */,
 				19C28FB4FE9D528D11CA2CBB /* Products */,
-				2263D8780FE01D3B00F410A4 /* CoreFoundation.framework */,
 			);
 			name = wchardataformatter;
 			sourceTree = "<group>";
@@ -115,6 +114,7 @@
 		089C1671FE841209C02AAC07 /* External Frameworks and Libraries */ = {
 			isa = PBXGroup;
 			children = (
+				2263D8780FE01D3B00F410A4 /* CoreFoundation.framework */,
 			);
 			name = "External Frameworks and Libraries";
 			sourceTree = "<group>";
@@ -313,10 +313,7 @@
 		2261882E0FE0F0E000FE8DC1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -327,7 +324,7 @@
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				INFOPLIST_FILE = resources/si/Info.plist;
-				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews";
+				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/Shared/XCode/CustomDataViews";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "si formatter";
@@ -340,10 +337,7 @@
 		2261882F0FE0F0E000FE8DC1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
@@ -352,7 +346,7 @@
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				INFOPLIST_FILE = resources/si/Info.plist;
-				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews";
+				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/Shared/XCode/CustomDataViews";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "si formatter";
@@ -364,10 +358,7 @@
 		4FADC23408B4156C00ABE55E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
@@ -378,7 +369,7 @@
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				INFOPLIST_FILE = resources/Info.plist;
-				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews";
+				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/Shared/XCode/CustomDataViews";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "unicode formatter";
@@ -391,10 +382,7 @@
 		4FADC23508B4156C00ABE55E /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = (
-					ppc,
-					i386,
-				);
+				ARCHS = "$(ARCHS_STANDARD_32_64_BIT)";
 				COPY_PHASE_STRIP = NO;
 				GCC_ENABLE_FIX_AND_CONTINUE = NO;
 				GCC_ENABLE_SYMBOL_SEPARATION = NO;
@@ -403,7 +391,7 @@
 				GCC_USE_GCC3_PFE_SUPPORT = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = NO;
 				INFOPLIST_FILE = resources/Info.plist;
-				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/3.1/XCode/CustomDataViews";
+				INSTALL_PATH = "/Users/sam/Library/Application Support/Developer/Shared/XCode/CustomDataViews";
 				MACOSX_DEPLOYMENT_TARGET = 10.4;
 				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "unicode formatter";

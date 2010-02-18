@@ -74,7 +74,6 @@ char* ConvertStringToEncoding(CFStringRef string, CFStringEncoding encoding, int
 char* formatUnicodeCharacter(long character, int identifier)
 {
 	CFStringRef string = CFStringCreateWithBytes(NULL, (UInt8*) &character, sizeof(character), kCFStringEncodingUTF32LE, false);
-//	CFStringRef string = CFStringCreateWithCString(NULL, "character test", kCFStringEncodingUTF8);												   ;
 	char* result = ConvertStringToEncoding(string, kCFStringEncodingUTF8, identifier);
 	CFRelease(string);
 	
